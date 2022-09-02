@@ -6,21 +6,39 @@ export const EMPTY = 0;
 export const FIRST_PLAYER = 1;
 export const SECOND_PLAYER = 2;
 
-const DEFAULT_CONTENT = [
-    [EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY],
-    [EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY],
-    [EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY],
-    [EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY],
-    [EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY],
-    [EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY],
-    [EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY],
-];
+const getEmptyBoard = (columns, items) => {
+    const board = [];
+
+    for (let i = 0; i < columns; i++) {
+        const array = [];
+
+        for (let l = 0; l < items; l++) {
+            array.push(EMPTY);
+        }
+
+        board.push(array)
+    }
+
+    return board;
+}
 
 const Board = () => {
 
-  const [content, setContent] = useState(DEFAULT_CONTENT);
+  const [content, setContent] = useState(getEmptyBoard(7, 6));
   const [currentPlayer, setCurrentPlayer] = useState(FIRST_PLAYER);
   let counter = 0;
+
+  useEffect(() => {
+      const winner = checkIfWin();
+
+      if(checkIfWin() !== EMPTY) {
+          alert(winner + " player is winner" );
+
+          setContent(getEmptyBoard(7, 6));
+          setCurrentPlayer(FIRST_PLAYER);
+      }
+
+  }, [currentPlayer])
 
   const checkIfCanChange = (columnIndex, itemIndex) => {
       return !(itemIndex > 0 && content[columnIndex][itemIndex - 1] === EMPTY);
@@ -79,12 +97,6 @@ const Board = () => {
           updatedContent[columnIndex][itemIndex] = currentPlayer;
 
           setContent(updatedContent);
-
-          const winner = checkIfWin();
-
-          if(checkIfWin() !== EMPTY) {
-              alert(winner + " player is winner" );
-          }
 
           setCurrentPlayer(currentPlayer === FIRST_PLAYER ? SECOND_PLAYER : FIRST_PLAYER)
       }

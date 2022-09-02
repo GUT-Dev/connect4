@@ -3,13 +3,13 @@
     height: 100px;
     margin: 15px;
     border-radius: 50px;
-    background-color: #ffffff;
+    background-color: #ececec;
 }
 
 .circle.first-player {
-    background-color: #4854ff;
+    background-color: #4650c4;
 }
 
 .circle.second-player {
-    background-color: #e02c2c;
+    background-color: #d54040;
 }
