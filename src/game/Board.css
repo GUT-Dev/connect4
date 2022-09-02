@@ -1,0 +1,28 @@
+.board-container {
+    margin: auto;
+    padding: 20px;
+}
+
+.bard-game-place {
+    background-color: #bdb7b7;
+    display: flex;
+    flex-direction: row;
+}
+
+.board-column {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.board-description {
+    text-align: left;
+    font-size: 1.5em;
+}
+
+.board-description.first-player {
+    color: #4854ff;
+}
+
+.board-description.second-player {
+    color: #e02c2c;
+}

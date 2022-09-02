@@ -1,0 +1,15 @@
+.circle {
+    width: 100px;
+    height: 100px;
+    margin: 15px;
+    border-radius: 50px;
+    background-color: #ffffff;
+}
+
+.circle.first-player {
+    background-color: #4854ff;
+}
+
+.circle.second-player {
+    background-color: #e02c2c;
+}
